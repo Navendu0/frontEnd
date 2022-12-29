@@ -17,6 +17,7 @@ import AddProduct from './Component/ProductControl/AddProduct'
 import './App.css'
 import loadingState from './Hooks/Loading'
 import Protected from './Component/Protected'
+import { url } from './Route/Address'
 
 
 export const AppContext = createContext(null)
@@ -25,8 +26,10 @@ export const AppContext = createContext(null)
 function App() {
     const navigate = useNavigate()
 
+    const{baseUrl}=url
 
-    const [isUser, setIsUser] = useState(true)
+
+    const [isUser, setIsUser] = useState()
 
     const signin = () => {
         setIsUser(true)
@@ -38,27 +41,27 @@ function App() {
 
 
     const checkUser = async () => {
-        await axios.get("http://localhost:4000/api/v1/profile", { withCredentials: true }).then((res) => {
+        await axios.get(`${baseUrl}/api/v1/profile`,{ withCredentials:true}).then((res) => {
             if (res.data.success) {
                 console.log(res.data)
+                console.log(res.headers);
                 return signin()
 
             }
             if (!res.data.success) {
                 console.log(res.data)
-
                 navigate('/login')
                 return signout()
-                return console.log("second")
-
             }
         }).catch(err => {
             console.error(err)
+            alert(err)
+          
         })
     }
 
     useEffect(() => {
-//         checkUser()
+        checkUser()
     }, [])
 
     return (
