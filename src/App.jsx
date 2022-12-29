@@ -26,7 +26,7 @@ function App() {
     const navigate = useNavigate()
 
 
-    const [isUser, setIsUser] = useState()
+    const [isUser, setIsUser] = useState(true)
 
     const signin = () => {
         setIsUser(true)
@@ -58,7 +58,7 @@ function App() {
     }
 
     useEffect(() => {
-        checkUser()
+//         checkUser()
     }, [])
 
     return (
