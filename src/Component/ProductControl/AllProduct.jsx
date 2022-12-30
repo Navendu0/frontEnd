@@ -48,7 +48,7 @@ function AllProduct() {
 
             {
               products && products.map((props, index) => {
-                const{name, price,image, highlightText, description, youtubeLinks, category, brandName}=props
+                const{name, price,images, highlightText, description, youtubeLinks, category, brandName}=props
                 return (<tr key={index} className=" bg-gray-300 border-b capitalize ">
                   <td
                     scope="row"
@@ -94,7 +94,7 @@ function AllProduct() {
                   <td className="py-4 px-4 text-gray-800 font-medium
                   whitespace-nowrap  max-w-xs overflow-hidden truncate
                   ">
-                    {image.length+" Elements"}
+                    {images.length+" Elements"}
                   </td>
                   <td className="py-4 px-4 text-gray-800 font-medium cursor-pointer"
                   onClick={()=>deleteProduct(props._id)}
